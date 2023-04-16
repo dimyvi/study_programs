@@ -1,13 +1,17 @@
 import random
+
+
 def start():
     print('Введи верхнюю границу цисла для игры')
     limit = int(input())
     global rand_num
     rand_num = random.randint(1, limit)
-    print('Добро пожаловать в числовую угадайку!\nВведи число [1:', limit,']', sep = '')
+    print('Добро пожаловать в числовую угадайку!\nВведи число [1:', limit, ']', sep='')
+
 
 def is_valid(number):
     return number.isdigit() and 1 <= int(number) <= 100
+
 
 def not_right():
     while True:
@@ -16,6 +20,7 @@ def not_right():
             return int(numm)
         else:
             print('А может быть все-таки введем целое число от 1 до 100?')
+
 
 def again():
     while True:
@@ -28,6 +33,8 @@ def again():
             break
         else:
             print("Напиши 'no' если не хочешь играть зоново, 'yes' если хочешь")
+
+
 def normal():
     count = 0
     while True:
@@ -44,6 +51,7 @@ def normal():
             print('Общее количество попыток:', count)
             print('хочешь еще сыграть? yes/no')
             break
+
 
 start()
 normal()

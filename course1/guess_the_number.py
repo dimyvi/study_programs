@@ -1,4 +1,5 @@
 from random import randint
+
 hidden_number = randint(1, 100)
 while hidden_number:
     user_num = int(input('Угадай число от 1 до 100: '))
@@ -11,5 +12,3 @@ while hidden_number:
     else:
         print('Вы угадали, поздравляем!')
         break
-
-

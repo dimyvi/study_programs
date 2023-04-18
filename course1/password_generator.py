@@ -29,5 +29,3 @@ if what.lower() == 'yes':
 print('Password options:')
 for _ in range(number_of_passwords):
     print(*sample(chars, lenght_of_one_password), sep='')
-
-

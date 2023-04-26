@@ -11,6 +11,7 @@ name = input().capitalize()
 print('Привет', name)
 
 
+
 def magic_ball():
     while True:
         question = input('Задай мне любой вопрос\n')

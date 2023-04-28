@@ -10,40 +10,61 @@ def get_word():
 
 def play(word):
     word_completion = '_' * len(word)
-    guessed_letters = set()
+    guessed_letters = []
     guessed_words = []
     tries = 6
+    print(display_hangman(tries))
+    print(word_completion)
 
-    while tries > 0 and word_completion != word:
-        print(display_hangman(tries))
-        print('отгаданные буквы:', *guessed_letters)
-        print(word_completion)
-
-        user_text = input('сюда ')
-
-        while user_text in guessed_letters:
-            user_text = input('сюда ')
-
-        guessed_letters.add(user_text)
-
-        if user_text in word:
-            print('Yes')
-            new_completion = ''
-            for i in range(len(word)):
-                if user_text == word[i]:
-                    new_completion += user_text
-                else:
-                    new_completion += word_completion[i]
-            word_completion = new_completion
+    while word_completion.isalpha() == False:
+        user_text = input('Введи слово или букву: ').upper()
+        if user_text.isalpha():
+            if user_text in guessed_words or user_text in guessed_letters:
+                print('эта буква или слово уже были')
+                continue
         else:
-            print('No')
-            tries -= 1
+            continue
 
-    if tries == 0:
-        print(display_hangman[tries])
-        print('end')
-    else:
-        print('all', word)
+        if user_text.isalpha() and len(user_text) == 1:
+            guessed_letters.append(user_text)
+            if user_text not in word:
+                tries -= 1
+                print(display_hangman(tries))
+                if tries == 0:
+                    print('Вы проиграли')
+                    break
+                print('вас осталось', tries, 'попыток')
+                continue
+
+            else:
+                for i in range(len(word)):
+                    if word[i] == user_text:
+                        list_output = list(word_completion)
+                        list_output[i] = user_text
+                        word_completion = "".join(list_output)
+                print("Вы угадали букву")
+                print(word_completion)
+                if word_completion.isalpha():
+                    print('Поздравляем, вы выиграли')
+                continue
+
+        elif user_text.isalpha() and len(user_text) > 1:
+            guessed_words.append(user_text)
+            if user_text == word:
+                print('Вы угадали слово: ', word)
+                word_completion = word
+                print('Поздравляем, вы выиграли')
+            else:
+                tries -= 1
+                print(display_hangman(tries))
+                if tries == 0:
+                    print('Вы проиграли')
+                    break
+                print(f'Вы не угадали слово, у вас осталось {tries} попыток')
+
+    a = input('Сыграть еще раз? да/нет)\n').lower()
+    if a == 'да':
+        play(get_word())
 
 
 def display_hangman(tries):

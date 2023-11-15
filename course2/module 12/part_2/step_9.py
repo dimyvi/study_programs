@@ -22,3 +22,4 @@ def generate_passwords(count, length):
 
 for i in generate_passwords(int(input()), int(input())):
     print(i)
+

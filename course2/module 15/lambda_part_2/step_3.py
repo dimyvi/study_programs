@@ -1,4 +1,4 @@
-is_non_negative_num = lambda x: True if str(x[0]) != '-' and  else False
+is_non_negative_num = lambda x: set(x.replace('.', '', 1)) <= set('0123456789')
 print(is_non_negative_num('10.34ab'))
 print(is_non_negative_num('10.45'))
 print(is_non_negative_num('-18'))

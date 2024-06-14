@@ -9,7 +9,6 @@ with open('data.json', 'r', encoding='utf-8') as file:
         elif isinstance(position, int) and not isinstance(position, bool):
             new_file.append(position + 1)
         elif isinstance(position, bool):
-
             new_file.append(not position)
         elif isinstance(position, list):
             position.extend(position)

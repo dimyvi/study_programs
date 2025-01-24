@@ -1,4 +1,10 @@
-def qw(a):
-    return
+from functools import wraps
 
-print(qw((1, 2)))
+def exception_decorator(func):
+    def wrapper(*args, **kwargs):
+        try:
+            value = func(*args, **kwargs)
+            return (value, 'Функция выполнилась без ошибок')
+        except Exception as e:
+            return (None, 'При вызове функции произошла ошибка')
+    return wrapper
